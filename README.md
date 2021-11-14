@@ -76,7 +76,7 @@ This automated test approach bridges the gap of communication between business u
 	
 	Test scenarios are initially created with natural language using Gherkin to define a "Feature --> Scenario Outline --> Given, And, When, Then" test structure which makes use of dynamic "Example" tables in order to inject test data into a scenario outline which is then used to enable parameterization of test steps.
 
-  2. Selenium POM (Page Object Model):
+    2. Selenium POM (Page Object Model):
 
 	The use of "WebEmelents" and "Page Actions" are impleted using page classes per web page in test. This design patern is used to increase ease of use and simplicity when creating selenium actions in the respective "Page definition class".
 	
