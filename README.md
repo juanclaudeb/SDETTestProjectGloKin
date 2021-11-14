@@ -110,6 +110,8 @@ CMD:
 			c:\SDETTestProject\target\cucumber-report-html\cucumber-html-reports
 			
 		3.2 Open any of the HTML files and navigate to the sections you would like to view your overall test results
+			3.2.2 Report is generated in the following location:
+			SDETTestProject/target/cucumber-report-html/cucumber-html-reports
 		
 ===============================================================================================================================================================================================
 ===============================================================================================================================================================================================
