@@ -1,0 +1,8 @@
+Hooks\Hook.class
+Pages\SdProductPage.class
+Steps\SdProductStepDefinition.class
+Steps\SdBasketStepDefinition.class
+TestRunners\TestRunner.class
+Pages\SdLoginPage.class
+Pages\SdBasketPage.class
+Steps\SdLoginStepDefinition.class

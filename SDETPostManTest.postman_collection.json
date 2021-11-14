@@ -1,0 +1,616 @@
+{
+	"info": {
+		"_postman_id": "af0b3da7-f384-4768-99cd-d178e551d0e8",
+		"name": "SDETPostManTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Functional Smoke Test Scenarios",
+			"item": [
+				{
+					"name": "Register weather station",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"weatherStationId\", jsonData.ID);\r",
+									"\r",
+									"const externailId = pm.collectionVariables.get(\"externalId\");\r",
+									"const name =  pm.collectionVariables.get(\"name\");\r",
+									"\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ID should be populated\", function () {\r",
+									"    pm.expect(jsonData.ID).to.be.not.empty\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ExternalId should be correct based on request\", function () {\r",
+									"    pm.expect(jsonData.external_id).eql(externailId)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name should be correct based on request\", function () {\r",
+									"    pm.expect(jsonData.name).eql(name)\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"external_id\": \"SF_TEST001\",\r\n  \"name\": \"San Francisco Test Station\",\r\n  \"latitude\": 37.76,\r\n  \"longitude\": -122.43,\r\n  \"altitude\": 150\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather station",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"const externailId = pm.collectionVariables.get(\"externalId\");\r",
+									"const name =  pm.collectionVariables.get(\"name\");\r",
+									"\r",
+									"pm.test(\"Successful GET request response code\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ID should be populated\", function () {\r",
+									"    pm.expect(jsonData.id).to.be.not.empty\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ExternalId should be correct based on request\", function () {\r",
+									"    pm.expect(jsonData.external_id).eql(externailId)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name should be correct based on request\", function () {\r",
+									"    pm.expect(jsonData.name).eql(name)\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations/{{weatherStationId}}?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations",
+								"{{weatherStationId}}"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update weather station",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsondata = pm.response.json();\r",
+									"const weatherStationId = pm.collectionVariables.get(\"weatherStationId\");\r",
+									"const externalId = pm.collectionVariables.get(\"externalId_updated\");\r",
+									"\r",
+									"pm.test(\"Successful PUT request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Id should remain the same as the original weather station\", function (){\r",
+									"    pm.expect(jsondata.id).eq(weatherStationId);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"External Id should be updated to latest value\", function (){\r",
+									"    pm.expect(jsondata.external_id).eq(externalId);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"external_id\": \"SF_TESTUPD001\",\r\n  \"name\": \"San Francisco Updated Station UPDATED\",\r\n  \"latitude\": 37.80,\r\n  \"longitude\": -122.47,\r\n  \"altitude\": 143\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations/{{weatherStationId}}?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations",
+								"{{weatherStationId}}"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete existing weather station",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations/{{weatherStationId}}?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations",
+								"{{weatherStationId}}"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather station - confirm weather station has been deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"const externailId = pm.collectionVariables.get(\"externalId\");\r",
+									"const name =  pm.collectionVariables.get(\"name\");\r",
+									"\r",
+									"pm.test(\"Status code should return a 404\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.equal(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Code should be equal to 404001\", function () {\r",
+									"    pm.expect(jsonData.code).eql(404001)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message should return - Station not found\", function () {\r",
+									"    pm.expect(jsonData.message).eql(\"Station not found\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations/{{weatherStationId}}?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations",
+								"{{weatherStationId}}"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative Testing",
+			"item": [
+				{
+					"name": "Register weather station - no name should return in error",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"weatherStationId\", jsonData.ID);\r",
+									"\r",
+									"pm.test(\"Successful POST request - should return 400 for bad request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.eql(400)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Code should be equal to 400001\", function () {\r",
+									"    pm.expect(jsonData.code).eql(400001)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message should be equal to Bad or zero length station name\", function () {\r",
+									"    pm.expect(jsonData.message).eql(\"Bad or zero length station name\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"external_id\": \"SF_TEST001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather station - invalid weatherstation Id provided",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Get message response to return not valid if weatherstation id is not valid \", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Station id not valid\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations/thisweatherstationiddoesnotexist?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations",
+								"thisweatherstationiddoesnotexist"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update weather station",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Unsuccessful PUT request - should return status code 400 if name field has been omitted\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.equal(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Code should be equal to 400002\", function () {\r",
+									"    pm.expect(jsonData.code).eql(400002)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message should be equal to Station id not valid\", function () {\r",
+									"    pm.expect(jsonData.message).eql(\"Station id not valid\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"external_id\": \"SF_UPD002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations/{{weatherStationId}}?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations",
+								"{{weatherStationId}}"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete existing weather station - invlaid weatherstation id provided",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Check that invalid weather station message is retured\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Station id not valid\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://api.openweathermap.org/data/3.0/stations/thiscodedisnotvalid?appid={{apikey}}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"3.0",
+								"stations",
+								"thiscodedisnotvalid"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "{{apikey}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{apikey}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "apikey",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apikey",
+			"value": "d6e6e81c9f67ff3fe99fc311c292ed7a"
+		},
+		{
+			"key": "weatherStationId",
+			"value": ""
+		},
+		{
+			"key": "externalId",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "latitude",
+			"value": ""
+		},
+		{
+			"key": "longitude",
+			"value": ""
+		},
+		{
+			"key": "altitude",
+			"value": ""
+		},
+		{
+			"key": "externalId_updated",
+			"value": ""
+		}
+	]
+}

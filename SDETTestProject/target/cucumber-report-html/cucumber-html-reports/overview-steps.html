@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports (no 1) - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+        <th>Number</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>SDETTestProject</td>
+        <td>1</td>
+      <td>14 Nov 2021, 13:26</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">Hooks.Hook.setup()</td>
+              <td>6</td>
+              <td class="duration" data-value="1408349533">1.408</td>
+              <td class="duration" data-value="1408349533">1.996</td>
+              <td class="duration" data-value="8450097200">8.450</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Hooks.Hook.teardown()</td>
+              <td>6</td>
+              <td class="duration" data-value="121003250">0.121</td>
+              <td class="duration" data-value="121003250">0.179</td>
+              <td class="duration" data-value="726019500">0.726</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_am_at_the_checkout_page()</td>
+              <td>1</td>
+              <td class="duration" data-value="28004300">0.028</td>
+              <td class="duration" data-value="28004300">0.028</td>
+              <td class="duration" data-value="28004300">0.028</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_click_the_checkout_button()</td>
+              <td>1</td>
+              <td class="duration" data-value="63002200">0.063</td>
+              <td class="duration" data-value="63002200">0.063</td>
+              <td class="duration" data-value="63002200">0.063</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_click_the_continue_button()</td>
+              <td>1</td>
+              <td class="duration" data-value="76000500">0.076</td>
+              <td class="duration" data-value="76000500">0.076</td>
+              <td class="duration" data-value="76000500">0.076</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_click_the_first_name_text_box()</td>
+              <td>1</td>
+              <td class="duration" data-value="64008000">0.064</td>
+              <td class="duration" data-value="64008000">0.064</td>
+              <td class="duration" data-value="64008000">0.064</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_click_the_last_name_text_box()</td>
+              <td>1</td>
+              <td class="duration" data-value="58998300">0.058</td>
+              <td class="duration" data-value="58998300">0.058</td>
+              <td class="duration" data-value="58998300">0.058</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_click_the_zip_postal_code_textbox()</td>
+              <td>1</td>
+              <td class="duration" data-value="55999000">0.055</td>
+              <td class="duration" data-value="55999000">0.055</td>
+              <td class="duration" data-value="55999000">0.055</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_insert_the_test_first_name_firstname(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="90000900">0.090</td>
+              <td class="duration" data-value="90000900">0.090</td>
+              <td class="duration" data-value="90000900">0.090</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_insert_the_test_last_name_lastname(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="65999400">0.065</td>
+              <td class="duration" data-value="65999400">0.065</td>
+              <td class="duration" data-value="65999400">0.065</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_insert_the_test_postal_code_zip_postal_code(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="99997700">0.099</td>
+              <td class="duration" data-value="99997700">0.099</td>
+              <td class="duration" data-value="99997700">0.099</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_should_be_navigated_to_the_checkout_overview_page()</td>
+              <td>1</td>
+              <td class="duration" data-value="27997600">0.027</td>
+              <td class="duration" data-value="27997600">0.027</td>
+              <td class="duration" data-value="27997600">0.027</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdBasketStepDefinition.i_should_be_navigated_to_the_information_page()</td>
+              <td>1</td>
+              <td class="duration" data-value="24996100">0.024</td>
+              <td class="duration" data-value="24996100">0.024</td>
+              <td class="duration" data-value="24996100">0.024</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_am_at_the_login_page()</td>
+              <td>6</td>
+              <td class="duration" data-value="272786700">0.272</td>
+              <td class="duration" data-value="272786700">0.332</td>
+              <td class="duration" data-value="1636720200">1.636</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_click_the_login_button()</td>
+              <td>6</td>
+              <td class="duration" data-value="948279850">0.948</td>
+              <td class="duration" data-value="948279850">5.125</td>
+              <td class="duration" data-value="5689679100">5.689</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_click_the_password_textbox()</td>
+              <td>6</td>
+              <td class="duration" data-value="68500500">0.068</td>
+              <td class="duration" data-value="68500500">0.091</td>
+              <td class="duration" data-value="411003000">0.411</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_click_the_username_textbox()</td>
+              <td>6</td>
+              <td class="duration" data-value="68721550">0.068</td>
+              <td class="duration" data-value="68721550">0.085</td>
+              <td class="duration" data-value="412329300">0.412</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_insert_the_password(java.lang.String)</td>
+              <td>6</td>
+              <td class="duration" data-value="53500966">0.053</td>
+              <td class="duration" data-value="53500966">0.064</td>
+              <td class="duration" data-value="321005800">0.321</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_insert_the_username(java.lang.String)</td>
+              <td>6</td>
+              <td class="duration" data-value="63665466">0.063</td>
+              <td class="duration" data-value="63665466">0.083</td>
+              <td class="duration" data-value="381992800">0.381</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_should_be_navigated_to_the_products_page()</td>
+              <td>4</td>
+              <td class="duration" data-value="3831295950">3.831</td>
+              <td class="duration" data-value="3831295950">15.067</td>
+              <td class="duration" data-value="15325183800">15.325</td>
+              <td class="failed">75.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdLoginStepDefinition.i_should_receive_an_error_that_the_user_has_been_locked_out(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="23002300">0.023</td>
+              <td class="duration" data-value="23002300">0.023</td>
+              <td class="duration" data-value="23002300">0.023</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdProductStepDefinition.i_am_on_the_product_page()</td>
+              <td>2</td>
+              <td class="duration" data-value="82000050">0.082</td>
+              <td class="duration" data-value="82000050">0.128</td>
+              <td class="duration" data-value="164000100">0.164</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdProductStepDefinition.i_click_the_add_to_cart_button_for_a_product()</td>
+              <td>2</td>
+              <td class="duration" data-value="62500450">0.062</td>
+              <td class="duration" data-value="62500450">0.067</td>
+              <td class="duration" data-value="125000900">0.125</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdProductStepDefinition.i_click_the_product_basket_icon()</td>
+              <td>2</td>
+              <td class="duration" data-value="63499400">0.063</td>
+              <td class="duration" data-value="63499400">0.064</td>
+              <td class="duration" data-value="126998800">0.126</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">Steps.SdProductStepDefinition.i_should_see_the_sauce_labs_backpack_product_i_added_to_the_basket(java.lang.String)</td>
+              <td>2</td>
+              <td class="duration" data-value="30499750">0.030</td>
+              <td class="duration" data-value="30499750">0.033</td>
+              <td class="duration" data-value="60999500">0.060</td>
+              <td class="passed">100.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>25</td>
+            <td>72</td>
+            <td class="duration">0.479</td>
+            <td class="duration">15.325</td>
+            <td class="duration">34.509</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>

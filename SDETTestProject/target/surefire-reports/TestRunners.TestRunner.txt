@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: TestRunners.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 35.606 s <<< FAILURE! - in TestRunners.TestRunner
+Login to SwagLabs website #3(Login to SwagLabs site)  Time elapsed: 17.06 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"//div[@id='header_container']//span[@class='title']"}
+  (Session info: headless chrome=95.0.4638.69)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.0.0', revision: '3a21814679'
+System info: host: 'JUAN-LAP', ip: '192.168.101.103', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [04bc388b2a44538010973a27efc02d78, findElement {using=xpath, value=//div[@id='header_container']//span[@class='title']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 95.0.4638.69, chrome: {chromedriverVersion: 95.0.4638.54 (d31a821ec901f..., userDataDir: C:\Users\JUAN~1.BOT\AppData...}, goog:chromeOptions: {debuggerAddress: localhost:56424}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:56424/devtoo..., se:cdpVersion: 95.0.4638.69, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 04bc388b2a44538010973a27efc02d78
+
