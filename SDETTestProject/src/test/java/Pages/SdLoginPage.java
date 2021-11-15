@@ -52,6 +52,6 @@ public class SdLoginPage {
     }
 
     public void checkLockedOutErrorReturned(String error) {
-        lbl_error.getText().equals("Epic sadface: Sorry, this user has been locked out.");
+        lbl_error.getText().equals(error);
     }
 }
