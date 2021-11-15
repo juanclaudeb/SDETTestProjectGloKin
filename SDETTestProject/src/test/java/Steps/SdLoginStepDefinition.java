@@ -28,7 +28,6 @@ public class SdLoginStepDefinition {
 
     @And("I click the username textbox")
     public void i_click_the_username_textbox() {
-
         loginPage.clickTxtUsername();
     }
 
