@@ -23,7 +23,7 @@ public class SdLoginStepDefinition {
 
     @Given("I am at the login page")
     public void i_am_at_the_login_page() {
-        Hook.getDriver().navigate().to("https://www.saucedemo.com/");
+        hook.getDriver().getCurrentUrl().equals("https://www.saucedemo.com/");
     }
 
     @And("I click the username textbox")
